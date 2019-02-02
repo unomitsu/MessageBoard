@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'sinatra'
+require 'sinatra/reloader'
 require 'pg'
 require 'json'
 
@@ -7,7 +8,7 @@ set :bind, '0.0.0.0'
 
 # URLのパスを入れる
 get '/hello' do
-  'Hello World!!'
+  'Hello Ruby!!'
 end
 
 get '/messages' do
@@ -38,5 +39,11 @@ post '/messages' do
   )
   connection.exec(cmd)
   connection.finish
+end
+
+get '/index' do
+  @title = 'Message Board'
+  @subtitle = 'title title'
+  erb :index
 end
   
