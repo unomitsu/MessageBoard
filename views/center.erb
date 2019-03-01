@@ -1,0 +1,8 @@
+<% @messages.each do |message| %>
+  <a href="./messages">
+    <%= "#{message[:body]} : #{message[:contributor]}" %><br>
+  </a>
+<% end %>
+
+<h3> - JSON - </h3>
+<%= "#{JSON.dump(@messages)}" %>

@@ -43,7 +43,23 @@ end
 
 get '/index' do
   @title = 'Message Board'
-  @subtitle = 'title title'
+  @subtitle = 'rl_message_board'
+  
+  connection = PG::connect(
+    user: "postgres",
+    dbname: "rl_message_board"
+  )
+  cmd = "SELECT * FROM board_id"
+  result = connection.exec(cmd)
+  @messages = []
+  result.each do |message|
+    @messages << {
+      body: message['id'],
+      contributor: message['daimei']
+    }
+  end
+  connection.finish
+
   erb :index
 end
   
