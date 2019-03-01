@@ -106,3 +106,6 @@ build-iPhoneSimulator/
 .rvmrc
 
 # End of https://www.gitignore.io/api/ruby,emacs
+
+# self file
+rere.txt
