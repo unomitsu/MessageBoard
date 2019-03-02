@@ -12,21 +12,26 @@ get '/hello' do
 end
 
 get '/messages' do
+  @title = 'Message Board'
+  @subtitle = 'messages'
+  
   connection = PG::connect(
     user: "postgres",
     dbname: "rl_message_board"
   )
   cmd = "SELECT * FROM messages"
   result = connection.exec(cmd)
-  messages = []
+  @messages = []
   result.each do |message|
-    messages << {
+    @messages << {
+      id: message['id'],
       body: message['body'],
       contributor: message['contributor']
     }
   end
   connection.finish
-  "#{JSON.dump(messages)}"
+
+  erb :messages
 end
 
 post '/messages' do
@@ -41,7 +46,7 @@ post '/messages' do
   connection.finish
 end
 
-get '/index' do
+get '/board' do
   @title = 'Message Board'
   @subtitle = 'rl_message_board'
   
