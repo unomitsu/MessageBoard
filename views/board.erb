@@ -1,0 +1,16 @@
+<h1>Message Board</h1>
+
+<% num = 0 %>
+<% @titles.each do |title| %>
+  <a href="./messages?id=<%= num %>&title=<%= title[:body] %>">
+    <%= "#{title[:id]} : #{title[:body]}" %><br>
+    <% num += 1 %>
+  </a>
+<% end %>
+
+<form action="./board" method="post">
+  <p>
+    Add Title <input type="text" name="daimei" size="40">
+    <input type="submit" name="submit" value="add">
+  </p>
+</form>

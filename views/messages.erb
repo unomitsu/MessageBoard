@@ -1,6 +1,19 @@
+<!-- ./messages でデータを取得して、ここで表示する -->
 
+<h2><%= @title %></h2>
+<a href="./board">top</a>
+
+<!-- コメントを出力 -->
 <% @messages.each do |message| %>
-  <p><%= "#{message[:id]} Name: #{message[:name]}" %></p>
-  <p><%= "#{message[:body]}" %></p>
-  <br>
+  <p>
+    <%= "[#{message[:id]}:#{message[:contributor]}] #{message[:body]}" %></p>
 <% end %>
+
+<!-- 新しく入力 -->
+<form action="./messages" method="post">
+  <input type="hidden" name="bid" value=<%= @bid %>>
+  <p>name<input type="text" name="contributor" size="8"></p>
+  <p>text<input type="text" name="body" size="60"></p>
+  <p><input type="submit" name="submit" value="add"></p>
+</form>
+
